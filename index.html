@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>OPHLSSA | Your Support, India's Future Development</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #1e293b; line-height: 1.6; scroll-behavior: smooth; overflow-x: hidden; }
+    .container { max-width: 1280px; margin: 0 auto; padding: 0 15px; }
+
+    :root {
+      --primary: #1c3b8b; --primary-dark: #11265e; --primary-light: #e0e7ff;
+      --accent: #f59e0b; --accent-hover: #d97706; --dark: #0f172a;
+      --gray-light: #f1f5f9; --white: #ffffff;
+      --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+      --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+    }
+
+    h1, h2, h3 { font-weight: 800; letter-spacing: -0.03em; line-height: 1.2; }
+
+    /* ================= MOBILE FIRST STYLES ================= */
+    
+    /* NAVBAR */
+    .navbar { background: white; padding: 10px 0; position: sticky; top: 0; z-index: 1000; border-bottom: 1px solid #e2e8f0; }
+    .nav-container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 10px; position: relative; }
+    
+    .logo { display: flex; align-items: center; text-decoration: none; gap: 8px; cursor: pointer; }
+    .logo img { height: 45px; width: auto; object-fit: contain; }
+    .logo-text { display: flex; flex-direction: column; }
+    .logo-text span:first-child { font-size: 1.2rem; font-weight: 800; color: var(--primary-dark); line-height: 1.1; }
+    .logo-text span:last-child { font-size: 0.55rem; font-weight: 600; color: #64748b; }
+    
+    /* Menu Toggle Button */
+    .menu-toggle { display: flex; align-items: center; justify-content: center; width: 40px; height: 40px; font-size: 1.4rem; background: #f1f5f9; border: 1px solid #cbd5e1; border-radius: 8px; color: var(--primary-dark); cursor: pointer; z-index: 1001; }
+    
+    /* Mobile Dropdown Menu */
+    .nav-right-group { display: none; width: 100%; flex-direction: column; background: white; padding: 15px; border-radius: 12px; margin-top: 10px; box-shadow: var(--shadow-lg); border: 1px solid #e2e8f0; }
+    .nav-right-group.active { display: flex; }
+    
+    .nav-links { display: flex; flex-direction: column; list-style: none; gap: 5px; width: 100%; align-items: flex-start; }
+    
+    /* Clickable Links - Fixed for Mobile */
+    .nav-links a { display: block; width: 100%; padding: 12px 10px; text-decoration: none; color: #334155; font-weight: 600; font-size: 1rem; border-bottom: 1px solid #f1f5f9; cursor: pointer; transition: 0.2s; }
+    .nav-links a:active { background: #f1f5f9; color: var(--primary); }
+    .nav-links a.active-page { color: var(--primary); }
+    
+    .nav-links .btn-donate-mobile { background: var(--accent); color: var(--dark); text-align: center; border-radius: 8px; margin-top: 10px; border: none; padding: 12px; font-size: 1rem; font-weight: bold; }
+    
+    .lang-selector { display: flex; align-items: center; background: #f1f5f9; border-radius: 30px; padding: 4px; gap: 4px; border: 1px solid #e2e8f0; margin-top: 15px; width: 100%; justify-content: center; }
+    .lang-btn { flex: 1; padding: 8px; border: none; background: transparent; border-radius: 30px; cursor: pointer; font-weight: 700; font-size: 0.85rem; color: #64748b; transition: 0.2s; }
+    .lang-btn.active { background: var(--primary); color: white; }
+
+    /* HERO SECTION */
+    .hero { padding: 40px 0; background: linear-gradient(135deg, #f0f4f8 0%, #ffffff 100%); }
+    .hero-content { display: flex; flex-direction: column; text-align: center; gap: 30px; }
+    .hero-badge { display: inline-block; background: var(--primary-light); color: var(--primary-dark); padding: 6px 14px; border-radius: 50px; font-size: 0.75rem; font-weight: 700; margin-bottom: 15px; text-transform: uppercase; }
+    .hero-text h1 { font-size: 2rem; color: var(--dark); margin-bottom: 15px; line-height: 1.2; }
+    .hero-text h1 span { color: var(--primary); }
+    .hero-tagline { font-size: 1rem; font-weight: 600; color: var(--accent); margin-bottom: 15px; }
+    .hero-desc { font-size: 0.95rem; color: #475569; margin-bottom: 25px; }
+    
+    .hero-buttons { display: flex; flex-direction: column; gap: 12px; width: 100%; }
+    .btn { display: flex; align-items: center; justify-content: center; gap: 8px; background-color: var(--primary); color: white; font-weight: 600; padding: 14px 20px; border-radius: 8px; text-decoration: none; border: none; cursor: pointer; font-size: 1rem; width: 100%; }
+    .btn:active { opacity: 0.8; }
+    .btn-donate { background-color: var(--accent); color: var(--dark); }
+    .btn-outline { background: transparent; border: 2px solid #cbd5e1; color: #334155; }
+    
+    .hero-image-wrapper { width: 100%; display: flex; justify-content: center; }
+    .hero-img-card { position: relative; width: 100%; max-width: 400px; border-radius: 20px; overflow: hidden; box-shadow: var(--shadow-lg); }
+    .hero-main-img { width: 100%; height: 300px; object-fit: cover; display: block; }
+    .hero-logo-overlay { position: absolute; bottom: -10px; left: -10px; width: 80px; height: 80px; background: white; border-radius: 50%; padding: 5px; border: 3px solid #f8fafc; }
+    .hero-logo-overlay img { width: 100%; height: 100%; object-fit: contain; border-radius: 50%; }
+    .hero-badge-float { display: none; }
+
+    /* SECTIONS */
+    section { padding: 40px 0; }
+    h2 { font-size: 1.6rem; margin-bottom: 20px; color: var(--primary-dark); position: relative; text-align: center; }
+    h2:after { content: ''; display: block; width: 50px; height: 3px; background: var(--accent); margin: 10px auto 0; border-radius: 2px; }
+    
+    .about-grid, .services-grid, .gallery-grid, .blog-grid { display: flex; flex-direction: column; gap: 15px; }
+    .about-card, .service-item, .blog-card { background: white; padding: 20px; border-radius: 12px; border: 1px solid #e2e8f0; text-align: center; }
+    .about-card i, .service-icon { font-size: 2rem; color: var(--primary); margin-bottom: 10px; display: block; }
+    .service-icon { width: 60px; height: 60px; line-height: 60px; background: var(--primary-light); border-radius: 12px; margin: 0 auto 15px; }
+    
+    .gallery-item { position: relative; border-radius: 12px; overflow: hidden; aspect-ratio: 1/1; }
+    .gallery-item img, .gallery-item video { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .gallery-caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); color: white; padding: 10px; font-size: 0.8rem; }
+    
+    .empty-gallery, .empty-blog { text-align: center; padding: 30px; color: #94a3b8; }
+
+    /* CONTACT PAGE */
+    .contact-page { padding: 30px 0; }
+    .contact-page h1 { text-align: center; font-size: 1.8rem; color: var(--primary-dark); margin-bottom: 5px; }
+    .contact-page .subtitle { text-align: center; color: #64748b; margin-bottom: 25px; font-size: 0.9rem; }
+    .contact-grid { display: flex; flex-direction: column; gap: 20px; }
+    
+    .contact-info-list { display: flex; flex-direction: column; gap: 10px; }
+    .contact-info-card { background: white; border-radius: 10px; padding: 15px; display: flex; align-items: center; gap: 12px; border: 1px solid #e2e8f0; }
+    .ci-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.1rem; flex-shrink: 0; }
+    .ci-text h4 { font-size: 0.75rem; color: #64748b; text-transform: uppercase; margin-bottom: 2px; }
+    .ci-text p, .ci-text a { color: var(--dark); font-weight: 600; font-size: 0.9rem; text-decoration: none; }
+    
+    .enquiry-form-card { background: white; border-radius: 12px; padding: 20px; border: 1px solid #e2e8f0; }
+    .enquiry-form-card h2 { font-size: 1.2rem; text-align: left; margin-bottom: 15px; }
+    .enquiry-form-card h2:after { display: none; }
+    
+    /* FORMS */
+    .form-group { margin-bottom: 12px; text-align: left; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 5px; }
+    .form-control { width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #cbd5e1; font-size: 1rem; font-family: inherit; }
+    .form-control:focus { border-color: var(--primary); outline: none; }
+
+    /* MODALS */
+    .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(15, 23, 42, 0.8); z-index: 2000; align-items: flex-start; justify-content: center; padding: 15px; overflow-y: auto; }
+    .modal-overlay.active { display: flex; }
+    .modal-content { background: white; width: 100%; max-width: 450px; border-radius: 16px; padding: 20px; position: relative; margin: 20px 0; }
+    .close-modal { position: absolute; top: 15px; right: 15px; font-size: 1.2rem; border: none; background: #f1f5f9; width: 30px; height: 30px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+
+    /* DASHBOARD */
+    .dashboard-wrap { padding: 20px 0; min-height: 70vh; background: #f1f5f9; }
+    .dashboard-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+    .dashboard-header h2 { font-size: 1.3rem; text-align: left; margin: 0; }
+    .dashboard-header h2:after { display: none; }
+    
+    .dashboard-tabs { display: flex; gap: 5px; overflow-x: auto; background: white; padding: 5px; border-radius: 10px; margin-bottom: 20px; white-space: nowrap; }
+    .tab-btn { padding: 8px 15px; border: none; background: transparent; font-weight: 600; font-size: 0.85rem; color: #64748b; border-radius: 6px; cursor: pointer; }
+    .tab-btn.active { background: var(--primary); color: white; }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    
+    .dashboard-card { background: white; border-radius: 12px; padding: 15px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+    
+    .stats-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 15px; }
+    .stat-card { background: white; padding: 15px; border-radius: 10px; border: 1px solid #e2e8f0; display: flex; align-items: center; gap: 10px; }
+    .stat-icon { width: 40px; height: 40px; border-radius: 8px; background: var(--primary-light); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .stat-info strong { font-size: 1.2rem; display: block; }
+    .stat-info span { font-size: 0.7rem; color: #64748b; }
+
+    .table-responsive { overflow-x: auto; width: 100%; }
+    table { width: 100%; border-collapse: collapse; min-width: 500px; }
+    th, td { padding: 10px; text-align: left; border-bottom: 1px solid #e2e8f0; font-size: 0.85rem; }
+    th { background: var(--primary-dark); color: white; font-size: 0.75rem; }
+    
+    .action-buttons-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+    .action-btn { padding: 15px; border-radius: 8px; border: 1px solid #cbd5e1; background: white; font-weight: 600; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+    .action-btn:disabled { opacity: 0.5; }
+    
+    /* FOOTER */
+    footer { background: var(--dark); color: white; padding: 30px 0; text-align: center; }
+    .footer-grid { display: flex; flex-direction: column; gap: 20px; margin-bottom: 20px; }
+    .footer-col h4 { color: var(--accent); margin-bottom: 10px; }
+    .footer-col p, .footer-col a { color: #94a3b8; font-size: 0.85rem; margin-bottom: 8px; display: block; cursor: pointer; text-decoration: none; }
+    .footer-logo { height: 60px; background: white; padding: 5px; border-radius: 8px; margin-bottom: 10px; }
+    
+    /* WHATSAPP BUTTON */
+    .whatsapp-float { position: fixed; bottom: 20px; right: 20px; width: 55px; height: 55px; background: #25D366; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; z-index: 999; text-decoration: none; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+
+    /* TOAST */
+    .toast { position: fixed; top: 20px; left: 50%; transform: translateX(-50%) translateY(-100px); background: #0f172a; color: white; padding: 10px 20px; border-radius: 8px; font-size: 0.85rem; z-index: 3000; transition: 0.3s; width: 90%; text-align: center; }
+    .toast.show { transform: translateX(-50%) translateY(0); }
+    .toast.success { background: #15803d; }
+    .toast.error { background: #b91c1c; }
+
+    /* ================= DESKTOP STYLES ================= */
+    @media (min-width: 900px) {
+      .container { padding: 0 24px; }
+      .logo img { height: 60px; }
+      .logo-text span:first-child { font-size: 1.5rem; }
+      .logo-text span:last-child { font-size: 0.7rem; }
+      
+      .menu-toggle { display: none; }
+      .nav-right-group { display: flex !important; flex-direction: row; align-items: center; gap: 20px; background: transparent; padding: 0; box-shadow: none; border: none; margin-top: 0; width: auto; }
+      .nav-links { flex-direction: row; gap: 20px; width: auto; }
+      .nav-links a { padding: 5px 0; border: none; width: auto; font-size: 0.95rem; }
+      .nav-links a:active { background: transparent; }
+      .nav-links .btn-donate-mobile { background: var(--accent); color: var(--dark); padding: 10px 20px; border-radius: 8px; margin-top: 0; width: auto; }
+      .lang-selector { margin-top: 0; width: auto; }
+      
+      .hero { padding: 80px 0; }
+      .hero-content { flex-direction: row; text-align: left; gap: 40px; }
+      .hero-text h1 { font-size: 3.5rem; }
+      .hero-desc { font-size: 1.1rem; }
+      .hero-buttons { flex-direction: row; justify-content: flex-start; }
+      .btn { width: auto; }
+      .hero-img-card { max-width: 480px; }
+      .hero-main-img { height: 500px; }
+      .hero-logo-overlay { width: 140px; height: 140px; bottom: -20px; left: -20px; }
+      .hero-badge-float { display: flex; position: absolute; top: 30px; right: -20px; background: white; padding: 15px 20px; border-radius: 12px; box-shadow: var(--shadow-lg); align-items: center; gap: 12px; }
+      
+      section { padding: 70px 0; }
+      h2 { font-size: 2.2rem; text-align: left; }
+      h2:after { margin: 10px 0 0; }
+      .about-grid { flex-direction: row; }
+      .about-card { flex: 1; text-align: left; padding: 30px; }
+      .services-grid { flex-direction: row; }
+      .service-item { flex: 1; padding: 30px; }
+      .gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); }
+      .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+      .blog-card { text-align: left; padding: 25px; }
+      
+      .contact-grid { flex-direction: row; gap: 30px; }
+      .contact-info-card { padding: 20px; }
+      .ci-icon { width: 50px; height: 50px; font-size: 1.3rem; }
+      
+      .stats-row { grid-template-columns: repeat(4, 1fr); gap: 15px; }
+      .stat-card { padding: 20px; }
+      .stat-info strong { font-size: 1.6rem; }
+      
+      .action-buttons-grid { grid-template-columns: repeat(4, 1fr); }
+      
+      .footer-grid { flex-direction: row; text-align: left; justify-content: space-between; }
+      .footer-col { flex: 1; }
+      .footer-bottom { border-top: 1px solid #334155; padding-top: 20px; font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a class="logo" onclick="showPage('home')">
+        <img src="logo.png" alt="Logo" onerror="this.src='https://i.ibb.co/3kFxG6Z/logo.jpg'">
+        <div class="logo-text">
+          <span>OPHLSSA</span>
+          <span>Omprakash Heeralal Shikha Sewa Association</span>
+        </div>
+      </a>
+      
+      <!-- Mobile Menu Button -->
+      <button class="menu-toggle" onclick="toggleMobileMenu()" id="menuBtn">
+        <i class="fas fa-bars" id="menuIcon"></i>
+      </button>
+      
+      <!-- Dropdown / Desktop Menu -->
+      <div class="nav-right-group" id="navMenu">
+        <ul class="nav-links">
+          <li><a onclick="navigate('home')">Home</a></li>
+          <li><a onclick="navigate('about')">About Us</a></li>
+          <li><a onclick="navigate('services')">Our Services</a></li>
+          <li><a onclick="navigate('gallery')">Gallery</a></li>
+          <li><a onclick="navigate('blog')">Blog</a></li>
+          <li><a onclick="navigate('contact')">Contact Us</a></li>
+          <li><button class="btn btn-donate-mobile" onclick="openModal('donationModal')"><i class="fas fa-heart"></i> Donate</button></li>
+        </ul>
+        <div class="lang-selector">
+          <button class="lang-btn active" id="langEN" onclick="setLanguage('en')">EN</button>
+          <button class="lang-btn" id="langHI" onclick="setLanguage('hi')">हिं</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============ MAIN WEBSITE ============ -->
+  <div id="page-home">
+    <section class="hero">
+      <div class="container hero-content">
+        <div class="hero-text">
+          <div class="hero-badge" data-i18n="hero.badge">Empowering Grassroots</div>
+          <h1 data-i18n-html="hero.title">Your Support,<br><span>India's Future Development.</span></h1>
+          <p class="hero-tagline" data-i18n="hero.tagline">Together we build a better tomorrow.</p>
+          <p class="hero-desc" data-i18n="hero.desc">OPHLSSA works at the grassroots level to empower communities, improve education, and foster sustainable development across the nation.</p>
+          <div class="hero-buttons">
+            <button class="btn btn-donate" onclick="openModal('donationModal')"><i class="fas fa-heart"></i> <span data-i18n="btn.donate">Donate Now</span></button>
+            <a onclick="navigate('about')" class="btn btn-outline"><span data-i18n="btn.learnMore">Learn More</span> <i class="fas fa-arrow-right"></i></a>
+          </div>
+        </div>
+        <div class="hero-image-wrapper">
+          <div class="hero-img-card">
+            <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=800&q=80" alt="NGO" class="hero-main-img">
+            <div class="hero-logo-overlay"><img src="logo.png" onerror="this.src='https://i.ibb.co/3kFxG6Z/logo.jpg'" alt="Logo"></div>
+            <div class="hero-badge-float">
+              <i class="fas fa-hands-holding-circle"></i>
+              <div><strong data-i18n="hero.trust">100% Transparent</strong><span data-i18n="hero.trustSub">Grassroots Impact</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container">
+        <h2 data-i18n="about.title">About Us</h2>
+        <p style="font-size: 0.95rem; color: #475569; margin-bottom: 20px; text-align: justify;" data-i18n="about.desc">OPHLSSA is a non-profit organization based in Gorakhpur, India. We are dedicated to holistic social upliftment through education, healthcare, skill development, and environmental initiatives.</p>
+        <div class="about-grid">
+          <div class="about-card"><i class="fas fa-bullseye"></i><h3 data-i18n="about.mission">Our Mission</h3><p data-i18n="about.missionDesc">To empower underprivileged sections of society with quality education, healthcare and livelihood opportunities.</p></div>
+          <div class="about-card"><i class="fas fa-eye"></i><h3 data-i18n="about.vision">Our Vision</h3><p data-i18n="about.visionDesc">A just and equitable society where every individual has the opportunity to thrive and contribute.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" style="background: var(--gray-light);">
+      <div class="container">
+        <h2 data-i18n="services.title">Our Services</h2>
+        <div class="services-grid">
+          <div class="service-item"><div class="service-icon"><i class="fas fa-graduation-cap"></i></div><h3 data-i18n="services.edu">Education Support</h3><p data-i18n="services.eduDesc">Scholarships, study material, and after-school programs for children in need.</p></div>
+          <div class="service-item"><div class="service-icon"><i class="fas fa-heartbeat"></i></div><h3 data-i18n="services.health">Health Camps</h3><p data-i18n="services.healthDesc">Free medical check-ups, awareness drives, and distribution of medicines.</p></div>
+          <div class="service-item"><div class="service-icon"><i class="fas fa-tools"></i></div><h3 data-i18n="services.skill">Skill Development</h3><p data-i18n="services.skillDesc">Vocational training for youth and women to enhance employability.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery">
+      <div class="container">
+        <h2 data-i18n="gallery.title">Gallery</h2>
+        <div class="gallery-grid" id="publicGalleryGrid">
+          <div class="empty-gallery"><i class="fas fa-images"></i> No media uploaded yet.</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="blog-section" style="background: var(--gray-light);">
+      <div class="container">
+        <h2 data-i18n="blog.title">Latest Updates</h2>
+        <div class="blog-grid" id="publicBlogGrid">
+          <div class="empty-blog"><i class="fas fa-newspaper"></i> No blog posts yet.</div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- ============ CONTACT PAGE ============ -->
+  <div id="page-contact" style="display: none;">
+    <div class="contact-page">
+      <div class="container">
+        <h1 data-i18n="contact.title">Contact Us</h1>
+        <p class="subtitle" data-i18n="contact.subtitle">We'd love to hear from you!</p>
+        <div class="contact-grid">
+          <div>
+            <div class="contact-info-list">
+              <div class="contact-info-card">
+                <div class="ci-icon"><i class="fas fa-phone-alt"></i></div>
+                <div class="ci-text"><h4>Phone</h4><p><a href="tel:+918707061791">+91 87070 61791</a><br><a href="tel:+919415515151">+91 94155 15151</a></p></div>
+              </div>
+              <div class="contact-info-card">
+                <div class="ci-icon" style="background:#dcfce7; color:#16a34a;"><i class="fas fa-envelope"></i></div>
+                <div class="ci-text"><h4>Email</h4><p><a href="mailto:alokchawla13f@gmail.com">alokchawla13f@gmail.com</a></p></div>
+              </div>
+              <div class="contact-info-card">
+                <div class="ci-icon" style="background:#ffedd5; color:#ea580c;"><i class="fas fa-map-marker-alt"></i></div>
+                <div class="ci-text"><h4>Address</h4><p>Birdpur Bazar, Siddharthnagar, UP - 272202</p></div>
+              </div>
+            </div>
+          </div>
+          <div class="enquiry-form-card">
+            <h2><i class="fas fa-paper-plane"></i> Send Enquiry</h2>
+            <form id="enquiryForm">
+              <div class="form-group"><label>Full Name *</label><input type="text" class="form-control" id="enqName" required></div>
+              <div class="form-group"><label>Email *</label><input type="email" class="form-control" id="enqEmail" required></div>
+              <div class="form-group"><label>Phone *</label><input type="tel" class="form-control" id="enqPhone" required></div>
+              <div class="form-group"><label>Message *</label><textarea class="form-control" id="enqMessage" required></textarea></div>
+              <button type="submit" class="btn"><i class="fas fa-paper-plane"></i> Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MEMBER DASHBOARD ============ -->
+  <div id="member-dashboard" style="display: none;">
+    <div class="dashboard-wrap">
+      <div class="container">
+        <div class="dashboard-header">
+          <h2><i class="fas fa-user-circle"></i> Member Dashboard</h2>
+          <button class="btn btn-outline" style="width:auto; padding:8px 15px; font-size:0.85rem;" onclick="logout()">Logout</button>
+        </div>
+        <div class="dashboard-card" id="member-data-container"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ ADMIN DASHBOARD ============ -->
+  <div id="admin-dashboard" style="display: none;">
+    <div class="dashboard-wrap">
+      <div class="container">
+        <div class="dashboard-header">
+          <h2><i class="fas fa-shield-alt"></i> Admin Panel</h2>
+          <button class="btn btn-outline" style="width:auto; padding:8px 15px; font-size:0.85rem;" onclick="logout()">Logout</button>
+        </div>
+
+        <div class="stats-row">
+          <div class="stat-card"><div class="stat-icon"><i class="fas fa-users"></i></div><div class="stat-info"><strong id="statMembers">0</strong><span>Members</span></div></div>
+          <div class="stat-card"><div class="stat-icon" style="background:#dcfce7; color:#15803d;"><i class="fas fa-hand-holding-usd"></i></div><div class="stat-info"><strong id="statDonation">₹0</strong><span>Donations</span></div></div>
+        </div>
+
+        <div class="dashboard-tabs">
+          <button class="tab-btn active" onclick="switchTab('membersTab')">Members</button>
+          <button class="tab-btn" onclick="switchTab('donationsTab')">Donations</button>
+          <button class="tab-btn" onclick="switchTab('galleryTab')">Gallery</button>
+          <button class="tab-btn" onclick="switchTab('blogTab')">Blog</button>
+          <button class="tab-btn" onclick="switchTab('enquiriesTab')">Enquiries</button>
+        </div>
+
+        <!-- Tab: Members -->
+        <div class="tab-panel active" id="membersTab">
+          <div class="dashboard-card">
+            <h3 style="font-size:1rem; margin-bottom:10px;">Quick Actions</h3>
+            <span id="selectedMemberBadge" style="font-size:0.8rem; color:var(--primary); margin-bottom:10px; display:block;">No member selected</span>
+            <div class="action-buttons-grid">
+              <button class="action-btn" id="btnModify" disabled onclick="quickAction('modify')"><i class="fas fa-edit"></i> Edit</button>
+              <button class="action-btn" id="btnDelete" disabled onclick="quickAction('delete')"><i class="fas fa-trash-alt"></i> Delete</button>
+              <button class="action-btn" id="btnActive" disabled onclick="quickAction('activate')"><i class="fas fa-check-circle"></i> Active</button>
+              <button class="action-btn" id="btnDeactivate" disabled onclick="quickAction('deactivate')"><i class="fas fa-ban"></i> Deactivate</button>
+            </div>
+            <hr style="margin:15px 0; border:0; border-top:1px solid #e2e8f0;">
+            <div class="action-buttons-grid">
+              <button class="action-btn" id="btnIdCard" disabled onclick="generateDocument('idcard')" style="background:#e0e7ff; color:#4338ca;"><i class="fas fa-id-card"></i> ID Card</button>
+              <button class="action-btn" id="btnCert" disabled onclick="generateDocument('certificate')" style="background:#f3e8ff; color:#7e22ce;"><i class="fas fa-certificate"></i> Certificate</button>
+            </div>
+          </div>
+
+          <div class="dashboard-card">
+            <input type="text" id="adminMemberSearch" class="form-control" placeholder="Search member..." style="margin-bottom:10px;" oninput="renderAdminMembers()">
+            <div class="table-responsive">
+              <table>
+                <thead><tr><th>ID</th><th>Name</th><th>Status</th><th>Action</th></tr></thead>
+                <tbody id="adminMembersBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Donations -->
+        <div class="tab-panel" id="donationsTab">
+          <div class="dashboard-card">
+            <div class="table-responsive">
+              <table>
+                <thead><tr><th>Donor</th><th>Amount</th><th>Action</th></tr></thead>
+                <tbody id="adminDonationsBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab: Gallery -->
+        <div class="tab-panel" id="galleryTab">
+          <div class="dashboard-card">
+            <button class="btn" style="margin-bottom:10px;" onclick="document.getElementById('galleryFileInput').click()"><i class="fas fa-upload"></i> Upload Media</button>
+            <input type="file" id="galleryFileInput" accept="image/*,video/*" style="display:none;" onchange="uploadGallery(event)">
+            <div style="display:flex; flex-wrap:wrap; gap:10px;" id="adminGalleryGrid"></div>
+          </div>
+        </div>
+
+        <!-- Tab: Blog -->
+        <div class="tab-panel" id="blogTab">
+          <div class="dashboard-card">
+            <input type="text" id="newBlogTitle" class="form-control" placeholder="Title" style="margin-bottom:10px;">
+            <textarea id="newBlogContent" class="form-control" placeholder="Content" style="margin-bottom:10px;"></textarea>
+            <button class="btn" style="margin-bottom:15px;" onclick="createBlog()">Create Blog</button>
+            <div id="adminBlogList"></div>
+          </div>
+        </div>
+
+        <!-- Tab: Enquiries -->
+        <div class="tab-panel" id="enquiriesTab">
+          <div class="dashboard-card">
+            <div class="table-responsive">
+              <table>
+                <thead><tr><th>Name</th><th>Message</th><th>Action</th></tr></thead>
+                <tbody id="adminEnquiriesBody"></tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ MODALS ============ -->
+  <div class="modal-overlay" id="signupModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('signupModal')"><i class="fas fa-times"></i></button>
+      <h2 style="margin-bottom:15px;">Member Signup</h2>
+      <form id="signupForm">
+        <div class="form-group"><label>Photo *</label><input type="file" class="form-control" id="regPhoto" accept="image/*" required></div>
+        <div class="form-group"><label>Full Name *</label><input type="text" class="form-control" id="regName" required></div>
+        <div class="form-group"><label>Email *</label><input type="email" class="form-control" id="regEmail" required></div>
+        <div class="form-group"><label>Mobile *</label><input type="tel" class="form-control" id="regMobile" required></div>
+        <div class="form-group"><label>Address *</label><input type="text" class="form-control" id="regAddress" required></div>
+        <div class="form-group"><label>Username *</label><input type="text" class="form-control" id="regUsername" required></div>
+        <div class="form-group"><label>Password *</label><input type="password" class="form-control" id="regPassword" required></div>
+        <input type="hidden" id="regId">
+        <input type="hidden" id="regDesc" value="New Member">
+        <input type="hidden" id="regPosition" value="Volunteer">
+        <button type="submit" class="btn">Sign Up</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="loginModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('loginModal')"><i class="fas fa-times"></i></button>
+      <h2 style="margin-bottom:15px;">Member Login</h2>
+      <form id="loginForm">
+        <div class="form-group"><label>Username</label><input type="text" class="form-control" id="loginUsername" required></div>
+        <div class="form-group"><label>Password</label><input type="password" class="form-control" id="loginPassword" required></div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p style="text-align:center; margin-top:10px; font-size:0.85rem;">New? <span onclick="closeModal('loginModal'); openModal('signupModal');" style="color:var(--primary); font-weight:bold; cursor:pointer;">Sign up</span></p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="adminLoginModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('adminLoginModal')"><i class="fas fa-times"></i></button>
+      <h2 style="margin-bottom:15px;">Admin Login</h2>
+      <form id="adminLoginForm">
+        <div class="form-group"><label>Username</label><input type="text" class="form-control" id="adminUser" required></div>
+        <div class="form-group"><label>Password</label><input type="password" class="form-control" id="adminPass" required></div>
+        <button type="submit" class="btn">Login</button>
+      </form>
+      <p style="text-align:center; margin-top:10px; font-size:0.8rem;">Demo: admin / admin123</p>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="editMemberModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('editMemberModal')"><i class="fas fa-times"></i></button>
+      <h2 style="margin-bottom:15px;">Edit Member</h2>
+      <form id="editForm">
+        <input type="hidden" id="editIndex">
+        <div class="form-group"><label>Name</label><input type="text" class="form-control" id="editName" required></div>
+        <div class="form-group"><label>Mobile</label><input type="text" class="form-control" id="editMobile" required></div>
+        <div class="form-group"><label>Status</label><select class="form-control" id="editStatus"><option value="active">Active</option><option value="inactive">Inactive</option></select></div>
+        <div class="form-group"><label>Upload ID Card</label><input type="file" class="form-control" id="editIdCard" accept="image/*"></div>
+        <div class="form-group"><label>Upload Certificate</label><input type="file" class="form-control" id="editCert" accept="image/*"></div>
+        <button type="submit" class="btn">Save Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="donationModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('donationModal')"><i class="fas fa-times"></i></button>
+      <h2 style="margin-bottom:15px;"><i class="fas fa-heart" style="color:var(--accent);"></i> Donate</h2>
+      <form id="donationForm">
+        <div class="form-group"><label>Your Name *</label><input type="text" class="form-control" id="donorName" required></div>
+        <div class="form-group"><label>Amount (₹) *</label><input type="number" class="form-control" id="donorAmount" min="1" required></div>
+        <button type="submit" class="btn btn-donate">Donate</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="modal-overlay" id="addDonationModal">
+    <div class="modal-content">
+      <button class="close-modal" onclick="closeModal('addDonationModal')"><i class="fas fa-times"></i></button>
+      <h2 style="margin-bottom:15px;">Add Donation</h2>
+      <form id="addDonationForm">
+        <div class="form-group"><label>Donor Name *</label><input type="text" class="form-control" id="addDonorName" required></div>
+        <div class="form-group"><label>Amount (₹) *</label><input type="number" class="form-control" id="addDonorAmount" min="1" required></div>
+        <button type="submit" class="btn">Add</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <img src="logo.png" class="footer-logo" onerror="this.src='https://i.ibb.co/3kFxG6Z/logo.jpg'">
+          <h4>OPHLSSA</h4>
+          <p>Your Support, India's Future Development.</p>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <p>Birdpur Bazar, Siddharthnagar - 272202</p>
+          <p>alokchawla13f@gmail.com</p>
+        </div>
+        <div class="footer-col">
+          <h4>Member Area</h4>
+          <p onclick="openModal('loginModal')">Member Login</p>
+          <p onclick="openModal('signupModal')">Sign Up</p>
+          <p onclick="openModal('adminLoginModal')" style="color:#64748b; margin-top:10px;">Admin Login</p>
+        </div>
+      </div>
+      <div style="border-top:1px solid #334155; padding-top:20px; font-size:0.8rem; color:#64748b;">© 2025 OPHLSSA.</div>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP BUTTON -->
+  <a href="https://wa.me/918707061791" target="_blank" class="whatsapp-float"><i class="fab fa-whatsapp"></i></a>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    // ========== MOBILE MENU TOGGLE (Fixed) ==========
+    function toggleMobileMenu() {
+      const menu = document.getElementById('navMenu');
+      const icon = document.getElementById('menuIcon');
+      if (menu.style.display === 'flex' || menu.classList.contains('active')) {
+        menu.classList.remove('active');
+        menu.style.display = '';
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+      } else {
+        menu.classList.add('active');
+        menu.style.display = 'flex';
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+      }
+    }
+
+    // ========== NAVIGATION (Fixed for mobile) ==========
+    function navigate(page) {
+      // Close menu
+      const menu = document.getElementById('navMenu');
+      if (window.innerWidth < 900) {
+        menu.classList.remove('active');
+        menu.style.display = '';
+        document.getElementById('menuIcon').classList.remove('fa-times');
+        document.getElementById('menuIcon').classList.add('fa-bars');
+      }
+
+      document.getElementById('page-home').style.display = 'none';
+      document.getElementById('page-contact').style.display = 'none';
+      document.getElementById('member-dashboard').style.display = 'none';
+      document.getElementById('admin-dashboard').style.display = 'none';
+
+      if (page === 'contact') {
+        document.getElementById('page-contact').style.display = 'block';
+      } else {
+        document.getElementById('page-home').style.display = 'block';
+        if (page === 'about' || page === 'services' || page === 'gallery' || page === 'blog') {
+          setTimeout(() => {
+            const el = document.getElementById(page === 'blog' ? 'blog-section' : page);
+            if (el) el.scrollIntoView({ behavior: 'smooth' });
+          }, 100);
+        }
+      }
+      window.scrollTo(0, 0);
+    }
+
+    // ========== STORAGE ==========
+    const DB = {
+      get: (key) => JSON.parse(localStorage.getItem('ophlssa_' + key)) || [],
+      set: (key, val) => localStorage.setItem('ophlssa_' + key, JSON.stringify(val))
+    };
+
+    function toast(msg, type = 'success') {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.className = 'toast ' + type + ' show';
+      setTimeout(() => t.classList.remove('show'), 3000);
+    }
+
+    // ========== MODALS ==========
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+    // Close modal when clicking outside
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) overlay.classList.remove('active');
+      });
+    });
+
+    // ========== SIGNUP ==========
+    document.getElementById('signupForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const members = DB.get('members');
+      const photoFile = document.getElementById('regPhoto').files[0];
+      
+      if (!photoFile) return toast('Upload a photo', 'error');
+
+      const reader = new FileReader();
+      reader.onload = function() {
+        const newId = 'OPHL-' + Date.now();
+        document.getElementById('regId').value = newId;
+        members.push({
+          id: newId,
+          photo: reader.result,
+          name: document.getElementById('regName').value,
+          email: document.getElementById('regEmail').value,
+          mobile: document.getElementById('regMobile').value,
+          address: document.getElementById('regAddress').value,
+          username: document.getElementById('regUsername').value,
+          password: document.getElementById('regPassword').value,
+          status: 'active',
+          idCardFile: null,
+          certFile: null
+        });
+        DB.set('members', members);
+        toast('Signup Successful!', 'success');
+        document.getElementById('signupForm').reset();
+        closeModal('signupModal');
+        openModal('loginModal');
+      };
+      reader.readAsDataURL(photoFile);
+    });
+
+    // ========== LOGIN ==========
+    document.getElementById('loginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const user = document.getElementById('loginUsername').value;
+      const pass = document.getElementById('loginPassword').value;
+      const member = DB.get('members').find(m => m.username === user && m.password === pass);
+      
+      if (member) {
+        toast('Login Successful!', 'success');
+        closeModal('loginModal');
+        document.getElementById('loginForm').reset();
+        
+        document.getElementById('page-home').style.display = 'none';
+        document.getElementById('page-contact').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'none';
+        document.getElementById('member-dashboard').style.display = 'block';
+        
+        document.getElementById('member-data-container').innerHTML = `
+          <div style="text-align:center; margin-bottom:20px;">
+            <img src="${member.photo}" style="width:80px; height:80px; border-radius:50%; object-fit:cover;">
+            <h3>${member.name}</h3>
+            <p style="color:var(--accent); font-weight:bold;">${member.id}</p>
+          </div>
+          <p><b>Email:</b> ${member.email}</p>
+          <p><b>Mobile:</b> ${member.mobile}</p>
+          <div style="margin-top:15px;">
+            ${member.idCardFile ? `<a href="${member.idCardFile}" download class="btn" style="margin-bottom:5px;">Download ID</a>` : '<p style="color:red;">ID Pending</p>'}
+            ${member.certFile ? `<a href="${member.certFile}" download class="btn" style="background:#7e22ce;">Download Certificate</a>` : '<p style="color:red;">Certificate Pending</p>'}
+          </div>
+        `;
+      } else {
+        toast('Wrong username/password', 'error');
+      }
+    });
+
+    // ========== ADMIN LOGIN ==========
+    document.getElementById('adminLoginForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      if (document.getElementById('adminUser').value === 'admin' && document.getElementById('adminPass').value === 'admin123') {
+        closeModal('adminLoginModal');
+        document.getElementById('page-home').style.display = 'none';
+        document.getElementById('page-contact').style.display = 'none';
+        document.getElementById('member-dashboard').style.display = 'none';
+        document.getElementById('admin-dashboard').style.display = 'block';
+        renderAdmin();
+      } else {
+        toast('Invalid Admin Credentials', 'error');
+      }
+    });
+
+    function logout() {
+      document.getElementById('page-home').style.display = 'block';
+      document.getElementById('page-contact').style.display = 'none';
+      document.getElementById('member-dashboard').style.display = 'none';
+      document.getElementById('admin-dashboard').style.display = 'none';
+    }
+
+    // ========== ADMIN PANEL LOGIC ==========
+    let selectedIdx = null;
+
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      event.target.classList.add('active');
+    }
+
+    function renderAdmin() {
+      // Stats
+      const members = DB.get('members');
+      const donations = DB.get('donations');
+      document.getElementById('statMembers').textContent = members.length;
+      document.getElementById('statDonation').textContent = '₹' + donations.reduce((s, d) => s + Number(d.amount), 0);
+
+      // Members Table
+      const body = document.getElementById('adminMembersBody');
+      body.innerHTML = members.map((m, i) => `
+        <tr onclick="selectMember(${i})" style="${selectedIdx === i ? 'background:#e0e7ff;' : ''}">
+          <td>${m.id}</td>
+          <td>${m.name}</td>
+          <td>${m.status}</td>
+          <td>
+            <button class="btn" style="padding:5px; font-size:0.7rem; width:auto; background:#fee2e2; color:#b91c1c;" onclick="event.stopPropagation(); deleteMember(${i})">Del</button>
+          </td>
+        </tr>
+      `).join('');
+
+      // Donations
+      document.getElementById('adminDonationsBody').innerHTML = donations.map((d, i) => `
+        <tr>
+          <td>${d.donor}</td>
+          <td>₹${d.amount}</td>
+          <td><button onclick="deleteDonation(${i})" style="color:red; border:none; background:none; cursor:pointer;"><i class="fas fa-trash"></i></button></td>
+        </tr>
+      `).join('');
+
+      // Gallery
+      const gallery = DB.get('gallery');
+      document.getElementById('adminGalleryGrid').innerHTML = gallery.map(g => `
+        <div style="width:80px; height:80px; position:relative; border-radius:8px; overflow:hidden;">
+          ${g.type === 'video' ? `<video src="${g.data}" style="width:100%; height:100%; object-fit:cover;"></video>` : `<img src="${g.data}" style="width:100%; height:100%; object-fit:cover;">`}
+          <button onclick="deleteGallery('${g.id}')" style="position:absolute; top:2px; right:2px; background:red; color:white; border:none; border-radius:50%; width:20px; height:20px; font-size:10px;"><i class="fas fa-times"></i></button>
+        </div>
+      `).join('');
+
+      // Blog
+      const blogs = DB.get('blogs');
+      document.getElementById('adminBlogList').innerHTML = blogs.map((b, i) => `
+        <div style="border:1px solid #ccc; padding:10px; margin-bottom:5px; border-radius:5px;">
+          <b>${b.title}</b>
+          <button onclick="deleteBlog(${i})" style="float:right; color:red; border:none; background:none;"><i class="fas fa-trash"></i></button>
+        </div>
+      `).join('');
+
+      // Enquiries
+      const enquiries = DB.get('enquiries');
+      document.getElementById('adminEnquiriesBody').innerHTML = enquiries.map((e, i) => `
+        <tr>
+          <td>${e.name}</td>
+          <td>${e.message}</td>
+          <td><button onclick="deleteEnquiry(${i})" style="color:red; border:none; background:none;"><i class="fas fa-trash"></i></button></td>
+        </tr>
+      `).join('');
+    }
+
+    function selectMember(index) {
+      selectedIdx = index;
+      renderAdmin();
+      document.getElementById('selectedMemberBadge').textContent = 'Selected: ' + DB.get('members')[index].name;
+      ['btnModify', 'btnDelete', 'btnActive', 'btnDeactivate', 'btnIdCard', 'btnCert'].forEach(id => {
+        document.getElementById(id).disabled = false;
+      });
+    }
+
+    function deleteMember(index) {
+      if (!confirm('Delete?')) return;
+      const members = DB.get('members');
+      members.splice(index, 1);
+      DB.set('members', members);
+      selectedIdx = null;
+      renderAdmin();
+      toast('Deleted');
+    }
+
+    function deleteDonation(index) {
+      const d = DB.get('donations');
+      d.splice(index, 1);
+      DB.set('donations', d);
+      renderAdmin();
+    }
+
+    function deleteGallery(id) {
+      const g = DB.get('gallery').filter(x => x.id !== id);
+      DB.set('gallery', g);
+      renderAdmin();
+    }
+
+    function deleteBlog(index) {
+      const b = DB.get('blogs');
+      b.splice(index, 1);
+      DB.set('blogs', b);
+      renderAdmin();
+    }
+
+    function deleteEnquiry(index) {
+      const e = DB.get('enquiries');
+      e.splice(index, 1);
+      DB.set('enquiries', e);
+      renderAdmin();
+    }
+
+    // ========== ENQUIRY ==========
+    document.getElementById('enquiryForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const enq = DB.get('enquiries');
+      enq.push({
+        name: document.getElementById('enqName').value,
+        message: document.getElementById('enqMessage').value
+      });
+      DB.set('enquiries', enq);
+      toast('Enquiry Sent!');
+      this.reset();
+    });
+
+    // ========== DONATION ==========
+    document.getElementById('donationForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const d = DB.get('donations');
+      d.push({
+        donor: document.getElementById('donorName').value,
+        amount: document.getElementById('donorAmount').value
+      });
+      DB.set('donations', d);
+      toast('Thank you!');
+      this.reset();
+      closeModal('donationModal');
+    });
+
+    // ========== GALLERY UPLOAD ==========
+    function uploadGallery(event) {
+      const file = event.target.files[0];
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = function() {
+        const g = DB.get('gallery');
+        g.push({ id: Date.now(), type: file.type.startsWith('video') ? 'video' : 'image', data: reader.result });
+        DB.set('gallery', g);
+        renderAdmin();
+        toast('Uploaded!');
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ========== BLOG CREATE ==========
+    function createBlog() {
+      const title = document.getElementById('newBlogTitle').value;
+      const content = document.getElementById('newBlogContent').value;
+      if (!title) return toast('Title required', 'error');
+      const b = DB.get('blogs');
+      b.push({ title, content });
+      DB.set('blogs', b);
+      document.getElementById('newBlogTitle').value = '';
+      document.getElementById('newBlogContent').value = '';
+      renderAdmin();
+      toast('Blog Created');
+    }
+  </script>
+</body>
+</html>
